@@ -1,0 +1,44 @@
+{% extends 'layouts/master.html' %}
+{% block title %}Изменить комментарий{% endblock %}
+{% block body %}
+    <h1>Изменить коментарий</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="surname_field">Фамилия</label>
+            <input type="text" class="form-control" id="surname_field" name="surname" value="{{ comment["surname"] }}">
+        </div>
+        <div class="form-group">
+            <label for="name_field">Имя</label>
+            <input type="text" class="form-control" id="name_field" name="name" value="{{ comment["name"] }}">
+        </div>
+        <div class="form-group">
+            <label for="patronymic_field">Отчетство</label>
+            <input type="text" class="form-control" id="patronymic_field" name="patronymic" value="{{ comment["patronymic"] }}">
+        </div>
+        <div class="form-group">
+            <label for="region_field">Регион</label>
+            <select class="form-control" id="region_field" name="region">
+                    <option value="{{ comment['region_id'] }}">{{ comment['region'] }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="city_field">Город</label>
+            <select class="form-control" id="city_field" name="city">
+                <option value="{{ comment['city_id'] }}">{{ comment['city'] }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="phone_field">Контактный телефон</label>
+            <input type="text" class="form-control" id="phone_field" placeholder="(861)1124556" name="phone" value="{{ comment["phone"] }}">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">E-mail</label>
+            <input type="email" class="form-control" id="email_filed" placeholder="name@example.com" name="email" value="{{ comment["mail"] }}">
+        </div>
+        <div class="form-group">
+            <label for="comment_field">Комментарий</label>
+            <textarea class="form-control" id="comment_field" rows="3" name="comment">{{ comment["comment"] }}</textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Сохранить">
+    </form>
+{% endblock %}

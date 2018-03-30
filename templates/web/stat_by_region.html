@@ -1,0 +1,22 @@
+{% extends 'layouts/master.html' %}
+{% block title %}View{% endblock %}
+{% block body %}
+    <h1>Количество комментариев по каждому городу региона {{ region["region"] }}</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Название города</th>
+            <th scope="col">Количество комментариев</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for city in comment_count_by_region_id %}
+            <tr>
+                <td>{{ city["city"] }}</td>
+                <td>{{ city["count"] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

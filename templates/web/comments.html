@@ -1,0 +1,47 @@
+{% extends 'layouts/master.html' %}
+{% block title %}Просмотр{% endblock %}
+{% block body %}
+    <h1>Комментарии</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Отчество</th>
+            <th scope="col">Город</th>
+            <th scope="col">Регион</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Комментарий</th>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td>{{ comment["id"] }}</td>
+                <td>{{ comment["surname"] }}</td>
+                <td>{{ comment["name"] }}</td>
+                <td>{{ comment["patronymic"] }}</td>
+                <td>{{ comment["city"] }}</td>
+                <td>{{ comment["region"] }}</td>
+                <td>{{ comment["phone"] }}</td>
+                <td>{{ comment["mail"] }}</td>
+                <td>{{ comment["comment"] }}</td>
+
+                <td class="text-right">
+                    <div class="row">
+                        <form action="{{ url_for('comment_delete') }}" method="post" class="pull-right">
+                            <input type="hidden" name="id" value="{{ comment["id"] }}">
+                            <input type="submit" class="btn btn-danger" data-toggle="confirmation"
+                                     data-title="Действительно удалить?" value="Удалить">
+                        </form>
+                        <a class="btn btn-primary pull-right" href="{{ url_for('edit_comment', id=comment["id"]) }}">Изменить</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

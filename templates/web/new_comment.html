@@ -1,0 +1,45 @@
+{% extends 'layouts/master.html' %}
+{% block title %}Новый комментарий{% endblock %}
+{% block body %}
+    <h1>Новый комментарий</h1>
+    <form action="{{ url_for('comment') }}" method="POST" onSubmit="return checkForm()">
+        <h3>Комментарий</h3>
+        <div class="form-group">
+            <label for="surname_field">Фамилия</label>
+            <input type="text" class="form-control" id="surname_field" name="surname">
+        </div>
+        <div class="form-group">
+            <label for="name_field">Имя</label>
+            <input type="text" class="form-control" id="name_field" name="name">
+        </div>
+        <div class="form-group">
+            <label for="patronymic_field">Отчетство</label>
+            <input type="text" class="form-control" id="patronymic_field" name="patronymic">
+        </div>
+        <div class="form-group">
+            <label for="region_field">Регион</label>
+            <select class="form-control" id="region_field" name="region">
+                {% for region in regions %}
+                    <option value="{{ region['id'] }}">{{ region['region'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="city_field">Город</label>
+            <select class="form-control" id="city_field" name="city"></select>
+        </div>
+        <div class="form-group">
+            <label for="phone_field">Контактный телефон</label>
+            <input type="text" class="form-control" id="phone_field" placeholder="(861)1124556" name="phone">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">E-mail</label>
+            <input type="text" class="form-control" id="email_filed" placeholder="name@example.com" name="email">
+        </div>
+        <div class="form-group">
+            <label for="comment_field">Комментарий</label>
+            <textarea class="form-control" id="comment_field" rows="3" name="comment"></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" value="Добавить">
+    </form>
+{% endblock %}

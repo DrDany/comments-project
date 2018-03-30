@@ -1,0 +1,42 @@
+{% extends 'layouts/master.html' %}
+{% block title %}View{% endblock %}
+{% block body %}
+    <h1>Cписок тех регионов у которых количество комментариев больше {{ count }}</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Название региона</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for region in regions %}
+            <tr>
+                <td>{{ region["region"] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Количество комментариев по каждому региону</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Название региона</th>
+            <th scope="col">Количество комментариев</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for comments_count_by_region in comments_count_by_regions %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('stat', region_id=comments_count_by_region["id"]) }}">{{ comments_count_by_region["region"] }}</a>
+                </td>
+                <td>
+                    {{ comments_count_by_region["count"] }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
