@@ -88,8 +88,7 @@ def stat():
     region_id = request.args.get("region_id")
     if region_id is None:
         count = 3
-        regions = db_handler.get_regions_comment_count(
-            count)  # список тех регионов у которых количество комментариев больше n
+        regions = db_handler.get_regions_comment_count(count)
         comments_count_by_regions = db_handler.get_comment_count_by_regions()
         return render_template('web/stat.html', regions=regions, count=count,
                                comments_count_by_regions=comments_count_by_regions)
